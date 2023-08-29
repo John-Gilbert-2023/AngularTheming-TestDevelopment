@@ -1,0 +1,90 @@
+.container {
+    padding: 8px;
+  }
+
+  .image-data {
+    // background-color: red;
+    width: 3rem;
+    margin-top: 0.5rem;
+  }  
+  
+  .user-name{
+      //   background-color: red;
+    width: 9rem;
+    padding-left: 0.5rem;
+  }
+  
+  .supplier-id{
+      //   background-color: red;
+        width: 5rem;
+        padding-left: 0.5rem;
+  }
+  
+  .supplier-action{
+      //  background-color: red;
+     width: 7rem;
+     padding-left: 0.8rem; 
+  }
+  
+  .supplier-details{
+    width: 9rem;
+    // padding-left: 0.5rem;
+    font-size: 10px;
+    
+  }
+  
+  .supplier-header{
+    width: 7rem;
+    font-size: 10px;
+    // background-color: red;
+  }
+  
+  .supplier-icon{
+        //  background-color: red;
+        width: 1rem;
+        padding-left: 0.2rem; 
+  }
+  
+  .supplier-emaildetails{
+    width: 7rem;
+    // padding-left: 0.5rem;
+    font-size: 10px;
+    // background-color: red;
+    
+  }
+  
+  .supplier-emailheader{
+    width: 9rem;
+    font-size: 10px;
+  }
+  .cardview{
+    
+  }
+  
+  .cardview-one{
+    background-color: #77b900;
+    height: 2rem;
+    width: 11rem;
+    text-align: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+  
+  .cardview-text{
+    font-size: 10px;
+    padding-top: 0.5rem;
+    color: #fff;
+  }
+
+  .mat-mdc-table {
+    width: 100%;
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  .material-icons{
+    color: #77b900;
+    font-size: 12px;
+  }
+
+
+  

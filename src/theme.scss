@@ -1,0 +1,100 @@
+// ? Importing `Work Sans` font for headings, you can change this if you want
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&display=swap");
+
+
+$theming-material-components-primary: mat-palette($mat-indigo);
+$theming-material-components-accent: mat-palette($mat-pink, A200, A100, A400);
+$theming-material-components-warn: mat-palette($mat-red);
+
+$theming-material-components-theme: mat-light-theme(
+  $theming-material-components-primary,
+  $theming-material-components-accent,
+  $theming-material-components-warn
+);
+
+
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $dark-primary,
+      accent: $dark-accent,
+      warn: $dark-warn,
+    ),
+  )
+);
+
+
+$heading-font-family: "'Work Sans', sans-serif";
+$typography: mat-typography-config(
+  $display-4: mat-typography-level(112px, $font-family: $heading-font-family),
+  $display-3: mat-typography-level(56px, $font-family: $heading-font-family),
+  $display-2: mat-typography-level(45px, $font-family: $heading-font-family),
+  $display-1: mat-typography-level(34px, $font-family: $heading-font-family),
+  $headline: mat-typography-level(24px, $font-family: $heading-font-family),
+  $title: mat-typography-level(20px, $font-family: $heading-font-family),
+);
+
+
+
+
+@mixin define-css-classes($theme) {
+	@include angular-material-theme($theme);
+
+	$primary: map-get($theme, primary);
+	$accent: map-get($theme, accent);
+	$warn: map-get($theme, warn);
+	$background: map-get($theme, background);
+	$foreground: map-get($theme, foreground);
+	
+  // CSS THEME-DEPENDENT-STYLES ARE HERE:
+  .theme-dependent-colors {
+      background: mat-color($primary);
+      color: mat-color($accent);
+  }
+}
+
+/**
+* Define your custom themes in this map. 
+* The `key` of each member is the name of CSS class for that theme. 
+* To better understanding the schema of the map, see `@each` loop below and especially pay attention to 
+* `map-has-key()` functions.
+*/
+$app-themes: (
+		indigo-pink : (primary-base: $mat-indigo, accent-base: $mat-pink),
+		deeppurple-amber: (primary-base: $mat-deep-purple, accent-base: $mat-amber),
+		pink-bluegrey : (primary-base: $mat-pink, accent-base: $mat-blue-gray),
+		purple-green : (primary-base: $mat-purple, accent-base: $mat-green),
+);
+
+@each $css-class, $theme in $app-themes {
+	$primary: if(map-has-key($theme, primary), map-get($theme, primary), mat-palette(map-get($theme, primary-base)));
+
+	$accent: if(map-has-key($theme, accent), map-get($theme, accent), mat-palette(map-get($theme, accent-base)));
+
+	$warn: if(map-has-key($theme, warn), map-get($theme, warn), mat-palette(
+			if(map-has-key($theme, warn-base), map-get($theme, warn-base), $mat-red)
+	));
+
+	.#{$css-class} {
+		@include define-css-classes(mat-light-theme($primary, $accent, $warn));
+	}
+
+	.#{$css-class}-dark {
+		@include define-css-classes(mat-dark-theme($primary, $accent, $warn));
+	}
+
+	.theme-primary.#{$css-class} {
+		background-color: mat-color($primary);
+	}
+
+	.theme-accent.#{$css-class} {
+		background-color: mat-color($accent);
+	}
+
+	.theme-warn.#{$css-class} {
+		background-color: mat-color($warn);
+	}
+}
